@@ -1,24 +1,18 @@
-﻿using System;
+﻿using CharCreator.Data;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharCreator.Data
+namespace CharCreator.Models
 {
-    public enum Alignment
+    class CharDetail
     {
-        LawfulGood, NeutralGood, ChaoticGood, LawfulNeutral, TrueNeutral, ChaoticNeutral, LawfulEvil, NeutralEvil, ChaoticEvil
-    };
-
-    public enum Background
-    {
-        Acolyte, CriminalSpy, FolkHero, Noble, Sage, Soldier
-    };
-    public class Character
-    {
-        public int ID { get; set; }
-        public int UserID { get; set; }
+        [Required]
+        [MinLength(2, ErrorMessage = "Please enter more than two characters")]
+        [MaxLength(100, ErrorMessage = "There are too many characters in this field")]
         public string CharName { get; set; }
         public int CharRaceID { get; set; }
         public int CharClassID { get; set; }
@@ -28,7 +22,5 @@ namespace CharCreator.Data
         public int ExperiencePoints { get; set; }
         public string Traits { get; set; }
         public int Level { get; set; }
-
-        public virtual ICollection<Story> Stories { get; set; }
     }
 }

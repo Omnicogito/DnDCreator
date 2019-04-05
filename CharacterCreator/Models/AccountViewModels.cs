@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CharCreator.Data;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CharacterCreator.Models
@@ -70,10 +71,16 @@ namespace CharacterCreator.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [MinLength(2, ErrorMessage = "Please enter more than two characters")]
+        [MaxLength(100, ErrorMessage = "There are too many characters in this field")]
         public string Name { get; set; }
 
+        public int Age { get; set; }
 
+        public string Location { get; set; }
+
+        [Required]
+        public ExperienceLevel Experience { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

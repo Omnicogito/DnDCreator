@@ -1,5 +1,4 @@
-﻿using CharacterCreator.Models;
-using CharCreator.Data;
+﻿using CharCreator.Data;
 using CharCreator.Models;
 using System;
 using System.Collections.Generic;
