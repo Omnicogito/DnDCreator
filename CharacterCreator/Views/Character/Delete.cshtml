@@ -1,0 +1,104 @@
+﻿@model CharCreator.Data.Character
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Character</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharRaceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharRaceID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharClassID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharClassID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alignment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alignment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Background)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Background)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharHistory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharHistory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperiencePoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperiencePoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Traits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Traits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

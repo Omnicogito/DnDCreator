@@ -1,15 +1,26 @@
 ﻿using CharCreator.Data;
 using CharCreator.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using System.Security.Principal;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CharCreator.Services
 {
     public class CharService
     {
+
+        private readonly Guid _userId;
+
+        public CharService(Guid userId)
+        {
+            _userId = userId;
+        }
         public bool Create(CharCreate charCreate)
         {
             var entity = new Character
@@ -31,21 +42,27 @@ namespace CharCreator.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<NoteListItem> GetNotes()
+        public IEnumerable<CharListItem> GetCharacters()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Notes
-                        .Where(p => p.OwnerId == _userId)
+                        .Characters
+                        .Where(p => p.UserID == _userId)
                         .Select(
                             p =>
-                               new NoteListItem
+                               new CharListItem
                                {
-                                   NoteId = p.NoteId,
-                                   Title = p.Title,
-                                   CreatedUtc = p.CreatedUtc
+                                   CharName = p.CharName,
+                                   CharRaceID = p.CharRaceID,
+                                   CharClassID = p.CharClassID,
+                                   Alignment = p.Alignment,
+                                   Background = p.Background,
+                                   CharHistory = p.CharHistory,
+                                   ExperiencePoints = p.ExperiencePoints,
+                                   Traits = p.Traits,
+                                   Level = p.Level,
                                }
                                );
 
@@ -53,54 +70,61 @@ namespace CharCreator.Services
             }
         }
 
-        public NoteDetail GetNoteById(int noteId)
+        public CharDetail GetCharacterById(int charID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                    .Notes
-                    .Single(e => e.NoteId == noteId && e.OwnerId == _userId);
+                    .Characters
+                    .Single(e => e.ID == charID && e.UserID == _userId);
                 return
-                    new NoteDetail
+                    new CharDetail
                     {
-                        NoteID = entity.NoteId,
-                        Title = entity.Title,
-                        Content = entity.Content,
-                        CreatedUtc = entity.CreatedUtc,
-                        ModifiedUtc = entity.ModifiedUtc,
+                        CharName = entity.CharName,
+                        CharRaceID = entity.CharRaceID,
+                        CharClassID = entity.CharClassID,
+                        Alignment = entity.Alignment,
+                        Background = entity.Background,
+                        CharHistory = entity.CharHistory,
+                        ExperiencePoints = entity.ExperiencePoints,
+                        Traits = entity.Traits,
+                        Level = entity.Level,
                     };
             }
         }
 
-        public bool UpdateNote(NoteEdit model)
+        public bool UpdateCharacter(CharEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Notes
-                        .Single(e => e.NoteId == model.NoteId && e.OwnerId == _userId);
+                        .Characters
+                        .Single(e => e.ID == model.ID && e.UserID == _userId);
 
-                entity.Title = model.Title;
-                entity.Content = model.Content;
-                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                entity.Alignment = model.Alignment;
+                entity.ExperiencePoints = model.ExperiencePoints;
+                entity.Level = model.Level;
+                
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteNote(int noteId)
+        public bool DeleteCharacter(int charID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Notes
-                        .Single(e => e.NoteId == noteId && e.OwnerId == _userId);
+                        .Characters
+                        .Single(e => e.ID == charID && e.UserID == _userId);
 
-                ctx.Notes.Remove(entity);
+                ctx.Characters.Remove(entity);
                 return ctx.SaveChanges() == 1;
+
+             
             }
         }
     }

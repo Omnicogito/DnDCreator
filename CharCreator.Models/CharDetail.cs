@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CharCreator.Models
 {
-    class CharDetail
+    public class CharDetail
     {
         [Required]
         [MinLength(2, ErrorMessage = "Please enter more than two characters")]

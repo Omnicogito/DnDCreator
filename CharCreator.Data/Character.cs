@@ -18,7 +18,7 @@ namespace CharCreator.Data
     public class Character
     {
         public int ID { get; set; }
-        public int UserID { get; set; }
+        public Guid UserID { get; set; }
         public string CharName { get; set; }
         public int CharRaceID { get; set; }
         public int CharClassID { get; set; }

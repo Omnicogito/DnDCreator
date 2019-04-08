@@ -59,10 +59,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CharacterCreator\CharacterCreator.csproj">
-      <Project>{72066bd4-da1b-43df-8a0d-c12e448dab50}</Project>
-      <Name>CharacterCreator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CharCreator.Contracts\CharCreator.Contracts.csproj">
       <Project>{a3530c69-1336-4939-a092-c7e97c65a303}</Project>
       <Name>CharCreator.Contracts</Name>
