@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using CharCreator.Data;
+using CharCreator.Models;
 using CharCreator.Services;
 using Microsoft.AspNet.Identity;
 
@@ -29,16 +30,11 @@ namespace CharacterCreator.Controllers
         // GET: Character/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = db.Characters.Find(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharService(userId);
+            var model = service.GetCharacterById(id);
+
+            return View(model);
         }
 
         // GET: Character/Create
@@ -48,6 +44,11 @@ namespace CharacterCreator.Controllers
             var raceList = charRaceService.GetRaces();
 
             ViewBag.CharRaceID = new SelectList(raceList, "ID", "RaceName");
+
+            var charClassService = new CharClassServices();
+            var classList = charClassService.GetClasses();
+
+            ViewBag.CharClassID = new SelectList(classList, "ID", "ClassName");
 
             return View();
         }
@@ -73,60 +74,73 @@ namespace CharacterCreator.Controllers
         }
 
         // GET: Character/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharService(userId);
+
+            var detail = service.GetCharacterById(id);
+            var model = new CharEdit
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = db.Characters.Find(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
+                CharName = detail.CharName,
+                CharClassID = detail.CharClassID,
+                Alignment = detail.Alignment,
+                CharHistory = detail.CharHistory,
+                ExperiencePoints = detail.ExperiencePoints,
+                Traits = detail.Traits,
+                Level = detail.Level,
+            };
+
+            return View(model);
         }
 
         // POST: Character/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CharName,CharRaceID,CharClassID,Alignment,Background,CharHistory,ExperiencePoints,Traits,Level")] Character character)
+        public ActionResult Edit(CharEdit model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Entry(character).State = EntityState.Modified;
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharService(userId);
+
+            if (service.UpdateCharacter(model))
+            {
                 return RedirectToAction("Index");
             }
-            return View(character);
+
+            ModelState.AddModelError("", "Theme park could not be edited.");
+            return View(model);
         }
 
         // GET: Character/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = db.Characters.Find(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharService(userId);
+
+            var model = service.GetCharacterById(id);
+
+            return View(model);
         }
 
         // POST: Character/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeletePark(int id)
         {
-            Character character = db.Characters.Find(id);
-            db.Characters.Remove(character);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var service = new ThemeParkService();
+
+            if (service.DeleteThemePark(id))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Delete", new { id });
         }
 
         protected override void Dispose(bool disposing)

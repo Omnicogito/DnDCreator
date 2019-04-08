@@ -72,7 +72,7 @@ namespace CharCreator.Services
             }
         }
 
-        public CharDetail GetCharacterById(int charID)
+        public CharDetail GetCharacterById(int? charID)
         {
             using (var ctx = new ApplicationDbContext())
             {

@@ -1,0 +1,58 @@
+﻿@model CharCreator.Data.CharClass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CharClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Character.CharName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Character.CharName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClassName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellCaster)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellCaster)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HitPointsFirstLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HitPointsFirstLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proficiencies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proficiencies)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

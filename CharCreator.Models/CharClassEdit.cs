@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharCreator.Data
+namespace CharCreator.Models
 {
-    public class CharClass
+    public class CharClassEdit
     {
-        [Key]
         public int ID { get; set; }
         public string ClassName { get; set; }
         public bool SpellCaster { get; set; }

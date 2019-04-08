@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharClassCreate.cs" />
+    <Compile Include="CharClassDetail.cs" />
+    <Compile Include="CharClassEdit.cs" />
+    <Compile Include="CharClassListItem.cs" />
     <Compile Include="CharCreate.cs" />
     <Compile Include="CharDetail.cs" />
     <Compile Include="CharEdit.cs" />

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CharCreator.Data.CharClass>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Character.CharName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpellCaster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HitPointsFirstLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proficiencies)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Character.CharName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpellCaster)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HitPointsFirstLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proficiencies)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

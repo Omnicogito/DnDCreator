@@ -174,6 +174,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Controllers\CharClassController.cs" />
     <Compile Include="Controllers\CharRaceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -289,6 +290,11 @@
     <Content Include="Views\CharRace\Details.cshtml" />
     <Content Include="Views\CharRace\Edit.cshtml" />
     <Content Include="Views\CharRace\Index.cshtml" />
+    <Content Include="Views\CharClass\Create.cshtml" />
+    <Content Include="Views\CharClass\Delete.cshtml" />
+    <Content Include="Views\CharClass\Details.cshtml" />
+    <Content Include="Views\CharClass\Edit.cshtml" />
+    <Content Include="Views\CharClass\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
