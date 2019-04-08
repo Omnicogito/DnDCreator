@@ -1,22 +1,14 @@
-﻿using System;
+﻿using CharCreator.Data;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharCreator.Data
+namespace CharCreator.Models
 {
-    public enum Size
+    public class CharRaceCreate
     {
-        Small,
-        Medium
-    }
-    public class CharRace
-    {
-        [Key]
-        public int ID { get; set; }
         public string RaceName { get; set; }
         public Size Size { get; set; }
         public string Speed { get; set; }

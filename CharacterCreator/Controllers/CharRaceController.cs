@@ -6,125 +6,119 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using CharCreator.Data;
+using CharCreator.Models;
 using CharCreator.Services;
-using Microsoft.AspNet.Identity;
 
 namespace CharacterCreator.Controllers
 {
-    public class CharacterController : Controller
+    public class CharRaceController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Character
+        // GET: CharRace
         public ActionResult Index()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new CharService(userId);
-            var model = service.GetCharacters();
-            return View(model);
+            var charRaces = db.CharRaces;
+            return View(charRaces.ToList());
         }
 
-        // GET: Character/Details/5
+        // GET: CharRace/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
-            if (character == null)
+            CharRace charRace = db.CharRaces.Find(id);
+            if (charRace == null)
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View(charRace);
         }
 
-        // GET: Character/Create
+        // GET: CharRace/Create
         public ActionResult Create()
         {
-            var charRaceService = new CharRaceServices();
-            var raceList = charRaceService.GetRaces();
-
-            ViewBag.CharRaceID = new SelectList(raceList, "ID", "RaceName");
-
             return View();
         }
 
-
-
-        // POST: Character/Create
+        // POST: CharRace/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CharName,CharRaceID,CharClassID,Alignment,Background,CharHistory,ExperiencePoints,Traits,Level")] Character character)
+        public ActionResult Create(CharRaceCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Characters.Add(character);
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var service = new CharRaceServices();
+            if (service.Create(model))
+            {
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Character could not be added");
-            return View(character);
+            ModelState.AddModelError("", "Race Could not be Added");
+            return View(model);
         }
 
-        // GET: Character/Edit/5
+        // GET: CharRace/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
-            if (character == null)
+            CharRace charRace = db.CharRaces.Find(id);
+            if (charRace == null)
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View(charRace);
         }
 
-        // POST: Character/Edit/5
+        // POST: CharRace/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CharName,CharRaceID,CharClassID,Alignment,Background,CharHistory,ExperiencePoints,Traits,Level")] Character character)
+        public ActionResult Edit([Bind(Include = "RaceName,Size,Speed,SpecialAttributes,Languages")] CharRace charRace)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(character).State = EntityState.Modified;
+                db.Entry(charRace).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(character);
+            return View(charRace);
         }
 
-        // GET: Character/Delete/5
+        // GET: CharRace/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
-            if (character == null)
+            CharRace charRace = db.CharRaces.Find(id);
+            if (charRace == null)
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View(charRace);
         }
 
-        // POST: Character/Delete/5
+        // POST: CharRace/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Character character = db.Characters.Find(id);
-            db.Characters.Remove(character);
+            CharRace charRace = db.CharRaces.Find(id);
+            db.CharRaces.Remove(charRace);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

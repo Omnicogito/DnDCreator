@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +19,12 @@ namespace CharCreator.Data
     };
     public class Character
     {
+        [Key]
         public int ID { get; set; }
-        public Guid UserID { get; set; }
-        public string CharName { get; set; }
         public int CharRaceID { get; set; }
         public int CharClassID { get; set; }
+        public Guid UserID { get; set; }
+        public string CharName { get; set; }
         public Alignment Alignment { get; set; }
         public Background Background { get; set; }
         public string CharHistory { get; set; }

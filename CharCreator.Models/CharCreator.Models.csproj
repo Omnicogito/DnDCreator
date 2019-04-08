@@ -54,11 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharClassCreate.cs" />
     <Compile Include="CharCreate.cs" />
     <Compile Include="CharDetail.cs" />
     <Compile Include="CharEdit.cs" />
     <Compile Include="CharListItem.cs" />
-    <Compile Include="PlayerCreate.cs" />
+    <Compile Include="CharRaceCreate.cs" />
+    <Compile Include="CharRaceDetail.cs" />
+    <Compile Include="CharRaceEdit.cs" />
+    <Compile Include="CharRaceListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

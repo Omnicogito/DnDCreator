@@ -66,6 +66,18 @@
     <Compile Include="Migrations\201904081504376_New Fields for User.Designer.cs">
       <DependentUpon>201904081504376_New Fields for User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904081530439_Added Name Field.cs" />
+    <Compile Include="Migrations\201904081530439_Added Name Field.Designer.cs">
+      <DependentUpon>201904081530439_Added Name Field.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081722535_Added Key to CharRace.cs" />
+    <Compile Include="Migrations\201904081722535_Added Key to CharRace.Designer.cs">
+      <DependentUpon>201904081722535_Added Key to CharRace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081933466_Corrected Foreign Keys for Character.cs" />
+    <Compile Include="Migrations\201904081933466_Corrected Foreign Keys for Character.Designer.cs">
+      <DependentUpon>201904081933466_Corrected Foreign Keys for Character.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Story.cs" />
@@ -80,6 +92,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904081504376_New Fields for User.resx">
       <DependentUpon>201904081504376_New Fields for User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081530439_Added Name Field.resx">
+      <DependentUpon>201904081530439_Added Name Field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081722535_Added Key to CharRace.resx">
+      <DependentUpon>201904081722535_Added Key to CharRace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081933466_Corrected Foreign Keys for Character.resx">
+      <DependentUpon>201904081933466_Corrected Foreign Keys for Character.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

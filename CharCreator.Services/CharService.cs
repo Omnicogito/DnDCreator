@@ -23,6 +23,7 @@ namespace CharCreator.Services
         }
         public bool Create(CharCreate charCreate)
         {
+
             var entity = new Character
             {
                 CharName = charCreate.CharName,
@@ -35,6 +36,7 @@ namespace CharCreator.Services
                 Traits = charCreate.Traits,
                 Level = charCreate.Level,
             };
+
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -106,7 +108,7 @@ namespace CharCreator.Services
                 entity.Alignment = model.Alignment;
                 entity.ExperiencePoints = model.ExperiencePoints;
                 entity.Level = model.Level;
-                
+
 
                 return ctx.SaveChanges() == 1;
             }
@@ -124,7 +126,7 @@ namespace CharCreator.Services
                 ctx.Characters.Remove(entity);
                 return ctx.SaveChanges() == 1;
 
-             
+
             }
         }
     }
