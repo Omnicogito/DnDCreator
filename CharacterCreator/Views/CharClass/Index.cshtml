@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CharCreator.Data.CharClass>
+﻿@model IEnumerable<CharCreator.Models.CharClassListItem>
 
 @{
     ViewBag.Title = "Index";
@@ -11,9 +11,6 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Character.CharName)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.ClassName)
         </th>
@@ -31,9 +28,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Character.CharName)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ClassName)
         </td>

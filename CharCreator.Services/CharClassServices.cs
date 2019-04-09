@@ -48,7 +48,7 @@ namespace CharCreator.Services
             }
         }
 
-        public CharClassDetail GetClassById(int classID)
+        public CharClassDetail GetClassById(int? classID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -59,6 +59,7 @@ namespace CharCreator.Services
                 return
                     new CharClassDetail
                     {
+                        ID = entity.ID,
                         ClassName = entity.ClassName,
                         SpellCaster = entity.SpellCaster,
                         HitPointsFirstLevel = entity.HitPointsFirstLevel,

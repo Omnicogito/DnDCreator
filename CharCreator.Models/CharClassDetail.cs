@@ -8,6 +8,7 @@ namespace CharCreator.Models
 {
     public class CharClassDetail
     {
+        public int ID { get; set; }
         public string ClassName { get; set; }
         public bool SpellCaster { get; set; }
         public int HitPointsFirstLevel { get; set; }

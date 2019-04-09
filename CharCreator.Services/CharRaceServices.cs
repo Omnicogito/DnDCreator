@@ -92,7 +92,7 @@ namespace CharCreator.Services
             }
         }
 
-        public bool DeleteCharacter(int raceID)
+        public bool DeleteRace(int raceID)
         {
             using (var ctx = new ApplicationDbContext())
             {

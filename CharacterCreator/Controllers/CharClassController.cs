@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CharCreator.Data;
+using CharCreator.Models;
+using CharCreator.Services;
 
 namespace CharacterCreator.Controllers
 {
@@ -17,29 +19,22 @@ namespace CharacterCreator.Controllers
         // GET: CharClass
         public ActionResult Index()
         {
-            var charClasses = db.CharClasses.Include(c => c.Character);
-            return View(charClasses.ToList());
+            var service = new CharClassServices();
+            var model = service.GetClasses();
+            return View(model);
         }
 
         // GET: CharClass/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CharClass charClass = db.CharClasses.Find(id);
-            if (charClass == null)
-            {
-                return HttpNotFound();
-            }
-            return View(charClass);
+            var service = new CharClassServices();
+            var model = service.GetClassById(id);
+            return View(model);
         }
 
         // GET: CharClass/Create
         public ActionResult Create()
         {
-            ViewBag.ID = new SelectList(db.Characters, "ID", "CharName");
             return View();
         }
 
@@ -48,33 +43,39 @@ namespace CharacterCreator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ClassName,SpellCaster,HitPointsFirstLevel,Proficiencies")] CharClass charClass)
+        public ActionResult Create(CharClassCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.CharClasses.Add(charClass);
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var service = new CharClassServices();
+            if (service.Create(model))
+            {
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID = new SelectList(db.Characters, "ID", "CharName", charClass.ID);
-            return View(charClass);
+            ModelState.AddModelError("", "Class could not be added");
+            return View(model); ;
         }
 
         // GET: CharClass/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            var service = new CharClassServices();
+
+            var detail = service.GetClassById(id);
+            var model = new CharClassEdit
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CharClass charClass = db.CharClasses.Find(id);
-            if (charClass == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID = new SelectList(db.Characters, "ID", "CharName", charClass.ID);
-            return View(charClass);
+                ID = detail.ID,
+                ClassName = detail.ClassName,
+                SpellCaster = detail.SpellCaster,
+                HitPointsFirstLevel = detail.HitPointsFirstLevel,
+                Proficiencies = detail.Proficiencies
+            };
+
+            return View(model);
         }
 
         // POST: CharClass/Edit/5
@@ -82,31 +83,32 @@ namespace CharacterCreator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ClassName,SpellCaster,HitPointsFirstLevel,Proficiencies")] CharClass charClass)
+        public ActionResult Edit(CharClassEdit model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Entry(charClass).State = EntityState.Modified;
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var service = new CharClassServices();
+
+            if (service.UpdateClass(model))
+            {
                 return RedirectToAction("Index");
             }
-            ViewBag.ID = new SelectList(db.Characters, "ID", "CharName", charClass.ID);
-            return View(charClass);
+
+            ModelState.AddModelError("", "Class could not be edited.");
+            return View(model);
         }
 
         // GET: CharClass/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CharClass charClass = db.CharClasses.Find(id);
-            if (charClass == null)
-            {
-                return HttpNotFound();
-            }
-            return View(charClass);
+            var service = new CharClassServices();
+
+            var model = service.DeleteClass(id);
+
+            return View(model);
         }
 
         // POST: CharClass/Delete/5
@@ -114,10 +116,14 @@ namespace CharacterCreator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CharClass charClass = db.CharClasses.Find(id);
-            db.CharClasses.Remove(charClass);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var service = new CharClassServices();
+
+            if (service.DeleteClass(id))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Delete", new { id });
         }
 
         protected override void Dispose(bool disposing)

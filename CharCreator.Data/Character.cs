@@ -24,10 +24,13 @@ namespace CharCreator.Data
         public int CharRaceID { get; set; }
         public int CharClassID { get; set; }
         public Guid UserID { get; set; }
+        [Display(Name ="Name")]
         public string CharName { get; set; }
         public Alignment Alignment { get; set; }
         public Background Background { get; set; }
+        [Display(Name ="Character History")]
         public string CharHistory { get; set; }
+        [Display(Name ="Experience Points")]
         public int ExperiencePoints { get; set; }
         public string Traits { get; set; }
         public int Level { get; set; }

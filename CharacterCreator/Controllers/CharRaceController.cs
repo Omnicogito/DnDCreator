@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using CharCreator.Data;
 using CharCreator.Models;
 using CharCreator.Services;
+using Microsoft.AspNet.Identity;
 
 namespace CharacterCreator.Controllers
 {
@@ -19,23 +20,18 @@ namespace CharacterCreator.Controllers
         // GET: CharRace
         public ActionResult Index()
         {
-            var charRaces = db.CharRaces;
-            return View(charRaces.ToList());
+            var service = new CharRaceServices();
+            var model = service.GetRaces();
+            return View(model);
         }
 
         // GET: CharRace/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CharRace charRace = db.CharRaces.Find(id);
-            if (charRace == null)
-            {
-                return HttpNotFound();
-            }
-            return View(charRace);
+            var service = new CharRaceServices();
+            var model = service.GetRaceById(id);
+
+            return View(model);
         }
 
         // GET: CharRace/Create
@@ -67,18 +63,21 @@ namespace CharacterCreator.Controllers
         }
 
         // GET: CharRace/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            var service = new CharRaceServices();
+
+            var detail = service.GetRaceById(id);
+            var model = new CharRaceEdit
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CharRace charRace = db.CharRaces.Find(id);
-            if (charRace == null)
-            {
-                return HttpNotFound();
-            }
-            return View(charRace);
+                RaceName = detail.RaceName,
+                Size = detail.Size,
+                Speed = detail.Speed,
+                SpecialAttributes = detail.SpecialAttributes,
+                Languages = detail.Languages,
+            };
+
+            return View(model);
         }
 
         // POST: CharRace/Edit/5
@@ -86,30 +85,32 @@ namespace CharacterCreator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RaceName,Size,Speed,SpecialAttributes,Languages")] CharRace charRace)
+        public ActionResult Edit(CharRaceEdit model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Entry(charRace).State = EntityState.Modified;
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var service = new CharRaceServices();
+
+            if (service.UpdateRaces(model))
+            {
                 return RedirectToAction("Index");
             }
-            return View(charRace);
+
+            ModelState.AddModelError("", "Race could not be edited.");
+            return View(model);
         }
 
         // GET: CharRace/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CharRace charRace = db.CharRaces.Find(id);
-            if (charRace == null)
-            {
-                return HttpNotFound();
-            }
-            return View(charRace);
+            var service = new CharRaceServices();
+
+            var model = service.GetRaceById(id);
+
+            return View(model);
         }
 
         // POST: CharRace/Delete/5
@@ -117,10 +118,14 @@ namespace CharacterCreator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CharRace charRace = db.CharRaces.Find(id);
-            db.CharRaces.Remove(charRace);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var service = new CharRaceServices();
+
+            if (service.DeleteRace(id))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Delete", new { id });
         }
 
         protected override void Dispose(bool disposing)

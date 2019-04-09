@@ -34,6 +34,16 @@ namespace CharacterCreator.Controllers
             var service = new CharService(userId);
             var model = service.GetCharacterById(id);
 
+            var charRaceService = new CharRaceServices();
+            var raceList = charRaceService.GetRaces();
+
+            ViewBag.CharRaceID = new SelectList(raceList, "ID", "RaceName");
+
+            var charClassService = new CharClassServices();
+            var classList = charClassService.GetClasses();
+
+            ViewBag.CharClassID = new SelectList(classList, "ID", "ClassName");
+
             return View(model);
         }
 
@@ -60,17 +70,22 @@ namespace CharacterCreator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CharName,CharRaceID,CharClassID,Alignment,Background,CharHistory,ExperiencePoints,Traits,Level")] Character character)
+        public ActionResult Create(CharCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Characters.Add(character);
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharService(userId);
+            if (service.Create(model))
+            {
                 return RedirectToAction("Index");
             }
 
             ModelState.AddModelError("", "Character could not be added");
-            return View(character);
+            return View(model);
         }
 
         // GET: Character/Edit/5
@@ -113,7 +128,7 @@ namespace CharacterCreator.Controllers
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Theme park could not be edited.");
+            ModelState.AddModelError("", "Character could not be edited.");
             return View(model);
         }
 
@@ -131,11 +146,12 @@ namespace CharacterCreator.Controllers
         // POST: Character/Delete/5
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeletePark(int id)
+        public ActionResult DeleteCharacter(int id)
         {
-            var service = new ThemeParkService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharService(userId);
 
-            if (service.DeleteThemePark(id))
+            if (service.DeleteCharacter(id))
             {
                 return RedirectToAction("Index");
             }

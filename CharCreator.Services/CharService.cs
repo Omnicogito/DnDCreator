@@ -29,6 +29,7 @@ namespace CharCreator.Services
                 CharName = charCreate.CharName,
                 CharRaceID = charCreate.CharRaceID,
                 CharClassID = charCreate.CharClassID,
+                UserID = _userId,
                 Alignment = charCreate.Alignment,
                 Background = charCreate.Background,
                 CharHistory = charCreate.CharHistory,
@@ -56,6 +57,7 @@ namespace CharCreator.Services
                             p =>
                                new CharListItem
                                {
+                                   ID = p.ID,
                                    CharName = p.CharName,
                                    CharRaceID = p.CharRaceID,
                                    CharClassID = p.CharClassID,

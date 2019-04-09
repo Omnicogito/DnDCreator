@@ -16,6 +16,7 @@ namespace CharCreator.Models
         public string CharName { get; set; }
         public int CharRaceID { get; set; }
         public int CharClassID { get; set; }
+        public Guid UserID { get; set; }
         public Alignment Alignment { get; set; }
         public Background Background { get; set; }
         public string CharHistory { get; set; }

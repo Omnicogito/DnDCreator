@@ -12,8 +12,10 @@ namespace CharCreator.Data
     {
         [Key]
         public int ID { get; set; }
+        [Display(Name ="Class Name")]
         public string ClassName { get; set; }
         public bool SpellCaster { get; set; }
+        [Display(Name ="Hit Points for 1st Level")]
         public int HitPointsFirstLevel { get; set; }
         public string Proficiencies { get; set; }
     }
