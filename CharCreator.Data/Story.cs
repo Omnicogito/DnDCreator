@@ -9,6 +9,7 @@ namespace CharCreator.Data
 {
     public class Story
     {
+        [Key]
         public int ID { get; set; }
         [Display(Name ="Story Name")]
         public string StoryName { get; set; }

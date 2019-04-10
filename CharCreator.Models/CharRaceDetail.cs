@@ -9,6 +9,7 @@ namespace CharCreator.Models
 {
     public class CharRaceDetail
     {
+        public int ID { get; set; }
         public string RaceName { get; set; }
         public Size Size { get; set; }
         public string Speed { get; set; }

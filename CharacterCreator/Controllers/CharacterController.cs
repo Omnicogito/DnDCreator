@@ -100,7 +100,7 @@ namespace CharacterCreator.Controllers
             ViewBag.CharClassID = new SelectList(classList, "ID", "ClassName");
 
             var detail = service.GetCharacterById(id);
-            var model = new CharEdit
+            var model = new CharDetail
             {
                 CharName = detail.CharName,
                 CharClassID = detail.CharClassID,

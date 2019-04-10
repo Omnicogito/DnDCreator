@@ -47,20 +47,17 @@ namespace CharCreator.Services
         }
         public IEnumerable<CharListItem> GetCharacters()
         {
+            
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .Characters
-                        .Where(p => p.UserID == _userId)
-                        .Select(
+                var query = ctx.Characters.Where(p => p.UserID == _userId).Select(
                             p =>
                                new CharListItem
                                {
                                    ID = p.ID,
                                    CharName = p.CharName,
-                                   CharRaceID = p.CharRaceID,
-                                   CharClassID = p.CharClassID,
+                                   CharRaceID = ctx.CharRaces.FirstOrDefault(c => c.ID == p.CharRaceID).RaceName,
+                                   CharClassID = ctx.CharClasses.FirstOrDefault(c => c.ID == p.CharClassID).ClassName,
                                    Alignment = p.Alignment,
                                    Background = p.Background,
                                    CharHistory = p.CharHistory,
@@ -78,16 +75,15 @@ namespace CharCreator.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Characters
-                    .Single(e => e.ID == charID && e.UserID == _userId);
+                var entity = ctx.Characters.Single(e => e.ID == charID && e.UserID == _userId);
+                var classEntity = ctx.CharClasses.FirstOrDefault(e => e.ID == entity.ID);
+                var raceEntity = ctx.CharRaces.FirstOrDefault(e => e.ID == entity.ID);
                 return
                     new CharDetail
                     {
                         CharName = entity.CharName,
-                        CharRaceID = entity.CharRaceID,
-                        CharClassID = entity.CharClassID,
+                        CharRaceID = classEntity.ClassName,
+                        CharClassID = raceEntity.RaceName,
                         Alignment = entity.Alignment,
                         Background = entity.Background,
                         CharHistory = entity.CharHistory,
@@ -102,16 +98,14 @@ namespace CharCreator.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Characters
-                        .Single(e => e.ID == model.ID && e.UserID == _userId);
+                var entity = ctx.Characters.Single(e => e.ID == model.ID && e.UserID == _userId);
+                var classEntity = ctx.CharClasses.FirstOrDefault(e => e.ID == entity.ID);
 
                 entity.Alignment = model.Alignment;
                 entity.ExperiencePoints = model.ExperiencePoints;
                 entity.CharHistory = model.CharHistory;
                 entity.Level = model.Level;
-                entity.CharClassID = model.CharClassID;
+                classEntity.ID = model.CharClassID;
 
 
                 return ctx.SaveChanges() == 1;

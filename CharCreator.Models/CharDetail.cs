@@ -10,12 +10,13 @@ namespace CharCreator.Models
 {
     public class CharDetail
     {
+        public int ID { get; set; }
         [Required]
         [MinLength(2, ErrorMessage = "Please enter more than two characters")]
         [MaxLength(100, ErrorMessage = "There are too many characters in this field")]
         public string CharName { get; set; }
-        public int CharRaceID { get; set; }
-        public int CharClassID { get; set; }
+        public string CharRaceID { get; set; }
+        public string CharClassID { get; set; }
         public Alignment Alignment { get; set; }
         public Background Background { get; set; }
         public string CharHistory { get; set; }

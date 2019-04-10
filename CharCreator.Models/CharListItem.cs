@@ -14,9 +14,9 @@ namespace CharCreator.Models
         [Display(Name = "Character Name")]
         public string CharName { get; set; }
         [Display(Name = "Race")]
-        public int CharRaceID { get; set; }
+        public string CharRaceID { get; set; }
         [Display(Name = "Class")]
-        public int CharClassID { get; set; }
+        public string CharClassID { get; set; }
         public Alignment Alignment { get; set; }
         public Background Background { get; set; }
         [Display(Name = "History")]
