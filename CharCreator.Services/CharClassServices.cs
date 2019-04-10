@@ -37,6 +37,7 @@ namespace CharCreator.Services
                             p =>
                                new CharClassListItem
                                {
+                                   ID = p.ID,
                                    ClassName = p.ClassName,
                                    SpellCaster = p.SpellCaster,
                                    HitPointsFirstLevel = p.HitPointsFirstLevel,

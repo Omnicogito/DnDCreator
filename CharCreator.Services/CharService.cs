@@ -109,7 +109,9 @@ namespace CharCreator.Services
 
                 entity.Alignment = model.Alignment;
                 entity.ExperiencePoints = model.ExperiencePoints;
+                entity.CharHistory = model.CharHistory;
                 entity.Level = model.Level;
+                entity.CharClassID = model.CharClassID;
 
 
                 return ctx.SaveChanges() == 1;

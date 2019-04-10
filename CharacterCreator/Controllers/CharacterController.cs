@@ -94,6 +94,11 @@ namespace CharacterCreator.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new CharService(userId);
 
+            var charClassService = new CharClassServices();
+            var classList = charClassService.GetClasses();
+
+            ViewBag.CharClassID = new SelectList(classList, "ID", "ClassName");
+
             var detail = service.GetCharacterById(id);
             var model = new CharEdit
             {

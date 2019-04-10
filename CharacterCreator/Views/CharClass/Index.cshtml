@@ -26,26 +26,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClassName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpellCaster)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HitPointsFirstLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proficiencies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        //@Html.HiddenFor(modelItem => item.ID)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpellCaster)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HitPointsFirstLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proficiencies)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
