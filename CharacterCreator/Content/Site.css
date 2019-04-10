@@ -1,7 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url(../Content/Assets/index.jpg);
+    background-size: cover;
 }
+
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
