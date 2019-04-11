@@ -60,19 +60,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharClassCreate.cs" />
-    <Compile Include="CharClassDetail.cs" />
-    <Compile Include="CharClassEdit.cs" />
-    <Compile Include="CharClassListItem.cs" />
-    <Compile Include="CharCreate.cs" />
-    <Compile Include="CharDetail.cs" />
-    <Compile Include="CharEdit.cs" />
-    <Compile Include="CharListItem.cs" />
-    <Compile Include="CharRaceCreate.cs" />
-    <Compile Include="CharRaceDetail.cs" />
-    <Compile Include="CharRaceEdit.cs" />
-    <Compile Include="CharRaceListItem.cs" />
+    <Compile Include="Classes\CharClassCreate.cs" />
+    <Compile Include="Classes\CharClassDetail.cs" />
+    <Compile Include="Classes\CharClassEdit.cs" />
+    <Compile Include="Classes\CharClassListItem.cs" />
+    <Compile Include="Character\CharCreate.cs" />
+    <Compile Include="Character\CharDetail.cs" />
+    <Compile Include="Character\CharEdit.cs" />
+    <Compile Include="Character\CharListItem.cs" />
+    <Compile Include="Races\CharRaceCreate.cs" />
+    <Compile Include="Races\CharRaceDetail.cs" />
+    <Compile Include="Races\CharRaceEdit.cs" />
+    <Compile Include="Races\CharRaceListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stories\StoryCreate.cs" />
+    <Compile Include="Stories\StoryDetail.cs" />
+    <Compile Include="Stories\StoryEdit.cs" />
+    <Compile Include="Stories\StoryListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CharCreator.Contracts\CharCreator.Contracts.csproj">
@@ -86,10 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Content\bootstrap-theme.css.map" />
-    <None Include="Content\bootstrap-theme.min.css.map" />
-    <None Include="Content\bootstrap.css.map" />
-    <None Include="Content\bootstrap.min.css.map" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
@@ -98,11 +98,6 @@
     <None Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\PagedList.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

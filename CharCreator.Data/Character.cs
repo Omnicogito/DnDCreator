@@ -21,7 +21,9 @@ namespace CharCreator.Data
     {
         [Key]
         public int ID { get; set; }
+        [Display(Name ="Race")]
         public int CharRaceID { get; set; }
+        [Display(Name ="Class")]
         public int CharClassID { get; set; }
         public Guid UserID { get; set; }
         [Display(Name ="Name")]
