@@ -21,6 +21,11 @@ namespace CharCreator.Services
         {
             _userId = userId;
         }
+
+        public CharService()
+        {
+
+        }
         public bool Create(CharCreate charCreate)
         {
 
@@ -51,6 +56,32 @@ namespace CharCreator.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Characters.Where(p => p.UserID == _userId).Select(
+                            p =>
+                               new CharListItem
+                               {
+                                   ID = p.ID,
+                                   CharName = p.CharName,
+                                   CharRaceID = ctx.CharRaces.FirstOrDefault(c => c.ID == p.CharRaceID).RaceName,
+                                   CharClassID = ctx.CharClasses.FirstOrDefault(c => c.ID == p.CharClassID).ClassName,
+                                   Alignment = p.Alignment,
+                                   Background = p.Background,
+                                   CharHistory = p.CharHistory,
+                                   ExperiencePoints = p.ExperiencePoints,
+                                   Traits = p.Traits,
+                                   Level = p.Level,
+                               }
+                               );
+
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<CharListItem> GetCharactersCharacters()
+        {
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Characters.Select(
                             p =>
                                new CharListItem
                                {

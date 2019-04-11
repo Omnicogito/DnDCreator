@@ -25,23 +25,46 @@ namespace CharacterCreator.Controllers
             return View(model);
         }
 
+
+        public ActionResult Create()
+        {
+            var charServices = new CharService();
+            var charList = charServices.GetCharactersCharacters();
+
+            ViewBag.Characters = new SelectList(charList, "ID", "CharName");
+
+
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoryCreate model)
         {
             if (!ModelState.IsValid)
             {
+                var charServices = new CharService();
+                var charList = charServices.GetCharactersCharacters();
+
+                ViewBag.Characters = new SelectList(charList, "ID", "CharName");
                 return View(model);
             }
 
             var service = new StoryService();
             if (service.Create(model))
             {
+                var charServices = new CharService();
+                var charList = charServices.GetCharactersCharacters();
+
+                ViewBag.Characters = new SelectList(charList, "ID", "CharName");
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Class could not be added");
+            ModelState.AddModelError("", "Story could not be added");
             return View(model); ;
         }
+
+
+
+
     }
 }

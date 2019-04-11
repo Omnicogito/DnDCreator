@@ -25,5 +25,7 @@ namespace CharCreator.Models
         public int ExperiencePoints { get; set; }
         public string Traits { get; set; }
         public int Level { get; set; }
+
+        public Character character { get; set; }
     }
 }

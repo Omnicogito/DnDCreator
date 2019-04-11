@@ -104,6 +104,10 @@
     <Compile Include="Migrations\201904102020057_Fix.Designer.cs">
       <DependentUpon>201904102020057_Fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904111425068_Many to many Relationship.cs" />
+    <Compile Include="Migrations\201904111425068_Many to many Relationship.Designer.cs">
+      <DependentUpon>201904111425068_Many to many Relationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Story.cs" />
@@ -147,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904102020057_Fix.resx">
       <DependentUpon>201904102020057_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904111425068_Many to many Relationship.resx">
+      <DependentUpon>201904111425068_Many to many Relationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

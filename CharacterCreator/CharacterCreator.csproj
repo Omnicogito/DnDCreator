@@ -314,10 +314,12 @@
     <Content Include="Views\CharClass\Details.cshtml" />
     <Content Include="Views\CharClass\Edit.cshtml" />
     <Content Include="Views\CharClass\Index.cshtml" />
+    <Content Include="Views\Story\Index.cshtml" />
+    <Content Include="Views\Story\Details.cshtml" />
+    <Content Include="Views\Story\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Story\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

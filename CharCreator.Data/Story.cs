@@ -9,6 +9,9 @@ namespace CharCreator.Data
 {
     public class Story
     {
+        public Story()
+        { this.Characters = new HashSet<Character>(); }
+
         [Key]
         public int ID { get; set; }
         [Display(Name ="Story Name")]

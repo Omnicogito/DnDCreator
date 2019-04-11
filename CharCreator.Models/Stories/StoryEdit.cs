@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CharCreator.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace CharCreator.Models
         public int ID { get; set; }
         public string StoryName { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<Character> Characters { get; set; }
     }
 }

@@ -77,6 +77,7 @@
     <Compile Include="Stories\StoryDetail.cs" />
     <Compile Include="Stories\StoryEdit.cs" />
     <Compile Include="Stories\StoryListItem.cs" />
+    <Compile Include="StoryCharacter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CharCreator.Contracts\CharCreator.Contracts.csproj">
