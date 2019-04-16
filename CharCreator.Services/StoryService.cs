@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace CharCreator.Services
 {
@@ -13,26 +14,34 @@ namespace CharCreator.Services
     {
         public bool Create(StoryCreate model)
         {
-
-            var ctx = new ApplicationDbContext();
-            var story = new Story()
-            {};
-            
-            foreach(int i in model.Characters)
+            using (var ctx = new ApplicationDbContext())
             {
-                story.Characters = ctx.Characters.Where(o => o.ID == i).ToList();
+
+                MultiSelectList charList = new MultiSelectList(ctx.Characters.ToList().OrderBy(i => i.CharName), "ID", "CharName");
+
+                model = new StoryCreate { Characters = charList };
+
+                var story = new Story
+                {
+                    StoryName = model.StoryName,
+                    Description = model.Description,
+                };
+
+                ctx.Stories.Add(story);
+                return ctx.SaveChanges() == 1;
             }
 
-                
+            //foreach (int i in model.Characters)
+            //{
+            //    story.Characters = ctx.Characters.Where(o => o.ID == i).ToList();
+            //}
+
+
 
 
             //var allCharacterList = ctx.Characters.Include(t => t.Stories).ToList();
             //story.Characters = (List<Character>)allCharacterList.Where(o => o.ID == model);
-            
 
-            ctx.Stories.Add(story);
-            return ctx.SaveChanges() == 1;
-            
             //var allCharacterList = ctx.Characters.ToList();
             //entity.Characters = allCharacterList.Where(o => o.ID == id);
 
@@ -61,24 +70,30 @@ namespace CharCreator.Services
             //return ctx.SaveChanges() == 1;
         }
 
-        public IEnumerable<StoryListItem> GetStories()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx.Stories.Select(
-                            p =>
-                               new StoryListItem
-                               {
-                                   ID = p.ID,
-                                   StoryName = p.StoryName,
-                                   Description = p.Description,
-                                   Characters = p.Characters,
-                               }
-                               );
+        //public IEnumerable<StoryListItem> GetStories()
+        //{
+        //    //using (var ctx = new ApplicationDbContext())
+        //    //{
+        //    //    var query = ctx.Stories.Select(
+        //    //                p =>
+        //    //                   new StoryListItem
+        //    //                   {
+        //    //                       ID = p.ID,
+        //    //                       StoryName = p.StoryName,
+        //    //                       Description = p.Description,
+        //    //                       Characters = p.Characters,
+        //    //                   }
+        //    //                   );
 
-                return query.ToArray();
-            }
-        }
+        //    //    return query.ToArray();
+        //    //}
+
+        //    //using (var ctx = new ApplicationDbContext())
+        //    //{
+        //    //    var query = ctx.Stories.ToList().OrderBy(i => i.StoryName);
+        //    //    return query;
+        //    //}
+        //}
 
         public StoryDetail GetStorybyID(int? storyID)
         {

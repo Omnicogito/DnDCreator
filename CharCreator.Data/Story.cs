@@ -17,7 +17,7 @@ namespace CharCreator.Data
         [Display(Name ="Story Name")]
         public string StoryName { get; set; }
         public string Description { get; set; }
+        public int CharacterID { get; set; }
         public virtual ICollection<Character> Characters { get; set; }
-
     }
 }

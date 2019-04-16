@@ -34,15 +34,15 @@ namespace CharacterCreator.Controllers
             var service = new CharService(userId);
             var model = service.GetCharacterById(id);
 
-            var charRaceService = new CharRaceServices();
-            var raceList = charRaceService.GetRaces();
+            //var charRaceService = new CharRaceServices();
+            //var raceList = charRaceService.GetRaces();
 
-            ViewBag.CharRaceID = new SelectList(raceList, "ID", "RaceName");
+            //ViewBag.CharRaceID = new SelectList(raceList, "ID", "RaceName");
 
-            var charClassService = new CharClassServices();
-            var classList = charClassService.GetClasses();
+            //var charClassService = new CharClassServices();
+            //var classList = charClassService.GetClasses();
 
-            ViewBag.CharClassID = new SelectList(classList, "ID", "ClassName");
+            //ViewBag.CharClassID = new SelectList(classList, "ID", "ClassName");
 
             return View(model);
         }

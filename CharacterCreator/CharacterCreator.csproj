@@ -317,6 +317,8 @@
     <Content Include="Views\Story\Index.cshtml" />
     <Content Include="Views\Story\Details.cshtml" />
     <Content Include="Views\Story\Create.cshtml" />
+    <Content Include="Views\Story\Edit.cshtml" />
+    <Content Include="Views\Story\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
