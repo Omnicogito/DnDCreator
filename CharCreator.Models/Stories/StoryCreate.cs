@@ -1,6 +1,7 @@
 ﻿using CharCreator.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace CharCreator.Models
     public class StoryCreate
     {
         public int ID { get; set; }
+        [Display(Name = "Story Name")]
         public string StoryName { get; set; }
         public string Description { get; set; }
         public List<string> CharacterIds { get; set; }

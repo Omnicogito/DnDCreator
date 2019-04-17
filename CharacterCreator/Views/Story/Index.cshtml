@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1>Story Index</h1>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -31,7 +31,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ListBox("ID", new SelectList(item.Characters, "ID", "CharName"))
+            @Html.ListBox("ID", new SelectList(item.Characters, "ID", "CharName"), new { @class = "form-control"})
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

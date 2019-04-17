@@ -10,12 +10,36 @@ namespace CharCreator.Data
 {
     public enum Alignment
     {
-        LawfulGood, NeutralGood, ChaoticGood, LawfulNeutral, TrueNeutral, ChaoticNeutral, LawfulEvil, NeutralEvil, ChaoticEvil
+        [Display(Name = "Lawful Good")]
+        LawfulGood,
+        [Display(Name = "Neutral Good")]
+        NeutralGood,
+        [Display(Name = "Chaotic Good")]
+        ChaoticGood,
+        [Display(Name = "Lawful Neutral")]
+        LawfulNeutral,
+        [Display(Name = "True Neutral")]
+        TrueNeutral,
+        [Display(Name = "Chaotic Neutral")]
+        ChaoticNeutral,
+        [Display(Name = "Lawful Evil")]
+        LawfulEvil,
+        [Display(Name = "Neutral Evil")]
+        NeutralEvil,
+        [Display(Name = "Chaotic Evil")]
+        ChaoticEvil
     };
 
     public enum Background
     {
-        Acolyte, CriminalSpy, FolkHero, Noble, Sage, Soldier
+        Acolyte,
+        [Display(Name = "Criminal/Spy")]
+        CriminalSpy,
+        [Display(Name = "Folk Hero")]
+        FolkHero,
+        Noble,
+        Sage,
+        Soldier
     };
     public class Character
     {

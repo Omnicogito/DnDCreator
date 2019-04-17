@@ -7,7 +7,6 @@
 <h1>Character Details</h1>
 
 <div>
-    <h4>Character</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -87,5 +86,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
     @Html.ActionLink("Back to List", "Index")
 </p>
