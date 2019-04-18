@@ -22,7 +22,7 @@ namespace CharacterCreator.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Please reach out to me!!";
 
             return View();
         }

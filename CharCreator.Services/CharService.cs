@@ -107,14 +107,14 @@ namespace CharCreator.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Characters.Single(e => e.ID == charID && e.UserID == _userId);
-                var classEntity = ctx.CharClasses.FirstOrDefault(e => e.ID == entity.ID);
-                var raceEntity = ctx.CharRaces.FirstOrDefault(e => e.ID == entity.ID);
+                //var classEntity = ctx.CharClasses.FirstOrDefault(e => e.ID == entity.ID);
+                //var raceEntity = ctx.CharRaces.FirstOrDefault(e => e.ID == entity.ID);
                 return
                     new CharDetail
                     {
                         CharName = entity.CharName,
-                        CharRaceID = classEntity.ClassName,
-                        CharClassID = raceEntity.RaceName,
+                        CharRaceID = ctx.CharRaces.FirstOrDefault(r => r.ID == entity.CharRaceID).RaceName,
+                        CharClassID = ctx.CharClasses.FirstOrDefault(c => c.ID == entity.CharClassID).ClassName,
                         Alignment = entity.Alignment,
                         Background = entity.Background,
                         CharHistory = entity.CharHistory,

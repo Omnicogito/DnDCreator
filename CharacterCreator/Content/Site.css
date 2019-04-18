@@ -1,4 +1,6 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url(../Content/Assets/index.jpg);
@@ -6,12 +8,11 @@
     color: wheat;
 }
 
-
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    font-family: Cinzel;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -28,6 +29,52 @@ textarea {
     max-width: 280px;
 }
 
-.jumbotron{
+.jumbotron {
+    font-family: 'Cinzel Decorative', cursive;
+    text-shadow: 4px 4px 4px #aaa;
+    text-align: center;
+    font-size: 48px;
+    /*padding-top: 25px;
+    padding-bottom: 25px;*/
+    padding: 25px;
+    color: wheat;
+    align-content: center;
+    BACKGROUND: RGBA(204, 204, 204, 0.05);
+}
+
+.lead {
+    text-align: center;
+    text-shadow: 4px 4px 4px black;
+}
+
+.Title{
+    font-size: 8vw;
+    text-align:center;
+}
+
+.body-content h1 {
+    font-family: "Cinzel Decorative", cursive;
+    text-shadow: 6px 6px 6px black;
+}
+
+.table {
+    background: rgba(20, 20, 20, 0.80);
+    border-radius: 3px;
+}
+
+.btn btn-default {
+    background-color: papayawhip;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+    .btn btn-default:hover {
+        background-color: black;
+        color: white;
+    }
+
+.navynav {
+    font-family: "Cinzel Decorative", cursive;
     color: black;
+    text-shadow: 4px 4px 4px #aaa;
 }

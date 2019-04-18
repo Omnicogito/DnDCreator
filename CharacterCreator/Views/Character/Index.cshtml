@@ -7,7 +7,7 @@
 <h1>Your Character List</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
 </p>
 <table class="table">
     <tr>
@@ -20,24 +20,24 @@
         <th>
             @Html.DisplayNameFor(model => model.CharClassID)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Alignment)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Background)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.CharHistory)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.ExperiencePoints)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Traits)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.Level)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -52,27 +52,27 @@
         <td>
             @Html.DisplayFor(modelItem => item.CharClassID)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Alignment)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Background)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.CharHistory)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.ExperiencePoints)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Traits)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.Level)
-        </td>
+        </td>*@
         <td>
 
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-default" } )
 
         </td>
     </tr>
