@@ -157,7 +157,7 @@ namespace CharacterCreator.Controllers
                 return HttpNotFound();
             }
             // Instantiate new instance of EditStoryCreateModel
-            EditStoryCreate model = new EditStoryCreate
+            StoryEdit model = new StoryEdit
             {
                 // Can set the player name and Id filds of the ViewModel
                 StoryId = story.ID.ToString(),

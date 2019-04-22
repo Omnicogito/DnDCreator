@@ -30,26 +30,27 @@ textarea {
 }
 
 .jumbotron {
-    font-family: 'Cinzel Decorative', cursive;
+    /*font-family: 'Cinzel Decorative', cursive;
     text-shadow: 4px 4px 4px #aaa;
     text-align: center;
-    font-size: 48px;
+    font-size: 48px;*/
     /*padding-top: 25px;
     padding-bottom: 25px;*/
     padding: 25px;
     color: wheat;
     align-content: center;
-    BACKGROUND: RGBA(204, 204, 204, 0.05);
+    background: rgba(20, 20, 20, 0.80);
 }
 
 .lead {
     text-align: center;
     text-shadow: 4px 4px 4px black;
+    
 }
 
 .Title{
-    font-size: 8vw;
-    text-align:center;
+    font-size: 6vw;
+    text-align: center;
 }
 
 .body-content h1 {
@@ -57,24 +58,29 @@ textarea {
     text-shadow: 6px 6px 6px black;
 }
 
+.cont {
+    background: rgba(20, 20, 20, 0.80);
+    border-radius: 3px;
+}
+
 .table {
     background: rgba(20, 20, 20, 0.80);
     border-radius: 3px;
 }
 
-.btn btn-default {
-    background-color: papayawhip;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
+.btn-default {
+    background-color: wheat;
+    color: black;
+    border-color: #2F3E48;
 }
 
-    .btn btn-default:hover {
-        background-color: black;
-        color: white;
+    .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+        background-color: rgba(20, 20, 20, 0.80);
+        color: #FFF;
+        border-color: #31347B;
     }
-
 .navynav {
     font-family: "Cinzel Decorative", cursive;
     color: black;
-    text-shadow: 4px 4px 4px #aaa;
+    /*text-shadow: 4px 4px 4px #aaa;*/
 }

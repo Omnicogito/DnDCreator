@@ -114,22 +114,22 @@ namespace CharCreator.Services
             }
         }
 
-        public bool UpdateStory(StoryEdit model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Stories
-                        .Single(e => e.ID == model.ID);
+        //public bool UpdateStory(StoryEdit model)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity =
+        //            ctx
+        //                .Stories
+        //                .Single(e => e.ID == model.ID);
 
-                entity.Description = model.Description;
-                entity.StoryName = model.StoryName;
-                entity.Characters = model.Characters;
+        //        entity.Description = model.Description;
+        //        entity.StoryName = model.StoryName;
+        //        entity.Characters = model.Characters;
 
-                return ctx.SaveChanges() == 1;
-            }
-        }
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
 
         public bool DeleteStory(int storyID)
         {

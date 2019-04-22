@@ -33,10 +33,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Characters, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.ListBoxFor(model => model.CharacterIds, Model.Characters, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Characters, "", new { @class = "text-danger" })
+            <div>
+                @Html.LabelFor(model => model.Characters, "Characters:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ListBoxFor(model => model.CharacterIds, Model.Characters, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Characters, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 

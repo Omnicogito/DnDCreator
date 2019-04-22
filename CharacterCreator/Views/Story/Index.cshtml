@@ -34,9 +34,7 @@
             @Html.ListBox("ID", new SelectList(item.Characters, "ID", "CharName"), new { @class = "form-control"})
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-default" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-default" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-default" })
         </td>
     </tr>
 }
